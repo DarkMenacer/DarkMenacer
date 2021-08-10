@@ -1,5 +1,8 @@
 ### Hi there 👋
 
+Pranav Chatur here
+Feel free to contact me @ pranavchatur@gmail.com or +91 708 352 2469
+
 <!--
 **DarkMenacer/DarkMenacer** is a ✨ _special_ ✨ repository because its `README.md` (this file) appears on your GitHub profile.
 
