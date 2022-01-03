@@ -13,7 +13,7 @@
 #include <algorithm>
 #include <numeric>    // some numeric algorithm
 #include <functional>
-#define FOR(i,start,limit) for(i=start;i<limit;++i)
+#define FOR(i,start,upper_limit) for(i=start;i<upper_limit;++i)
 
 #define fastIO ios_base::sync_with_stdio(0 && cin.tie(0) && cout.tie(0));
 int32_t mod = 1e9 + 7;
