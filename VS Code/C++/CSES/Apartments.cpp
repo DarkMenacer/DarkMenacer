@@ -1,7 +1,7 @@
 /*
 Name:-              Apartments
 Platform:-          CSES
-Date:-              3rd January 2022
+Date:-              3 January 2022
 Type of Problem:-   Sorting and Searching
 Complexity:-        O(nlogn) 
 Status:-            Solved
