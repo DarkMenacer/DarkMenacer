@@ -1,3 +1,4 @@
+//header files
 #include <iostream>
 #include <string>
 #include <cmath>
@@ -13,8 +14,18 @@
 #include <algorithm>   // includes sort()
 #include <numeric>    // some numeric algorithm
 #include <functional>
-#define FOR(i,start,upper_limit) for(i=start;i<upper_limit;++i)
+#include <tuple>
 
+//Macros
+#define FOR(i,start,upper_limit) for(i=start;i<upper_limit;++i)
+#define pb push_back
+#define all(name) name.begin(),name.end()
+#define f first
+#define s second
+#define mp make_pair
+#define p pair
+
+//Whatever this is
 #define fastIO ios_base::sync_with_stdio(0 && cin.tie(0) && cout.tie(0));
 int32_t mod = 1e9 + 7;
 void solve()
