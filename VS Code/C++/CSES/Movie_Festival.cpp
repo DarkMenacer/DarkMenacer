@@ -1,7 +1,7 @@
 /*
 Name:-              Movie Festival
 Platform:-          CSES
-Date:-              17 January 2021
+Date:-              17 January 2022
 Type of Problem:-   Greedy Algorithmic
 Complexity:-        O(n)
 Status:-            Solved
