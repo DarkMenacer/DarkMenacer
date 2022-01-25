@@ -15,6 +15,9 @@
 #include <numeric>    // some numeric algorithm
 #include <functional>
 #include <tuple>
+#include <stack>
+#include <queue>
+using namespace std;
 
 //Macros
 #define FOR(i,start,upper_limit) for(i=start;i<upper_limit;++i)
