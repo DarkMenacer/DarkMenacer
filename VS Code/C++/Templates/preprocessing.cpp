@@ -20,9 +20,19 @@
 using namespace std;
 
 //Macros
+
+//*) general purpose
 #define FOR(i,start,upper_limit) for(i=start;i<upper_limit;++i)
 #define pb push_back
 #define all(name) name.begin(),name.end()
+
+//*) debugging
+#define here cout<<"here\n"
+#define nl cout<<'\n'
+#define display(name) for(auto it: name){cout<<it<<" ";}cout<<"\n"
+#define what_is___here(name) cout<<"It is "<<name<<"\n"
+
+//2) Pair
 #define f first
 #define s second
 #define mp make_pair

@@ -2,66 +2,57 @@
 Name:-              Restaurant Customers
 Platform:-          CSES
 Date:-              17 January 2022
-Type of Problem:-   Sorting, Greedy, Map
-Complexity:-        ???
-Status:-            Time Limit Error (Wrong Algorithm)
+Type of Problem:-   Sorting, Pair
+Complexity:-        O(n)
+Status:-            Solved
 
 Solution in brief:
--
+The arrival time of a customer is taken as a pair with '1' and departure time as a pair with '-1' in a vector<pair<int,int>>
+The vector is sorted according to the 1st values and then tranversed, adding the second values.
+Basic idea is that when a customer arrives, '1' is added and when he leaves '-1' is added. Max of the value is our answer to the problem.
+
 Sample to understand solution:
 Input:-
+3
+1 5
+2 3
+4 7
 
 Output:-
+2
 
+Explanation:-
+vector<pair<int,int>> : 1  2  3  4  5  7
+                        1  1 -1  1 -1 -1
 */
 
 #include <iostream>
-#include <map>
-#include <iterator>
-#include <numeric>
+#include <vector>
+#include <algorithm>
+#define f first
+#define s second
+#define mp make_pair
+#define p pair
+#define FOR(i,start,upper_limit) for(i=start;i<upper_limit;++i)
+#define pb push_back
+#define all(name) name.begin(),name.end()
 using namespace std;
-#define FOR(i,start,upper_limit) for(i=start;i!=upper_limit;++i)
- 
-int give_me_answer(map<int,int> customers, map<int,bool> eating, int closes){
-   int time = customers.begin()->first, answer = 0, occupied=0;
-   map<int,int>::iterator itr_c = customers.begin();
-   map<int, bool>:: iterator itr_e = eating.begin();
-   while(time<closes){
-       itr_c = customers.find(time);
-       if(itr_c != customers.end()){
-           itr_e = eating.find(itr_c->first);
-           itr_e->second = 1;
-       }
-        itr_e = eating.begin();
-        while(itr_e!=eating.end()){
-            if(itr_e->second){
-                itr_c = customers.find(itr_e->first);
-                if(itr_c->second == time){
-                    itr_e->second = 0;
-                }
-            }
-            occupied+=itr_e->second;
-            ++itr_e;
-        }  
-        if(answer<occupied){answer=occupied;}
-        ++time;
-        occupied = 0;
-   }
-    return answer;
-}
- 
+
 int main(){
-    int n,i,a,b,closes=0;
+    int n,i,x,answer = 0, current=0;
     cin>>n;
-    map<int,int> customers;
-    map<int,bool> eating;
+    vector <p <int, int> > customers_moving;
     FOR(i,0,n){
-        cin>>a;
-        cin>>b;
-        customers.insert(make_pair(a,b));
-        eating.insert(make_pair(a,0));
-        if(closes<b){closes=b;}
+        cin>>x;
+        customers_moving.push_back( mp(x,1) );
+        cin>>x;
+        customers_moving.push_back( mp(x,-1) );
     }
-    cout<<give_me_answer(customers,eating,closes);
+    sort(all(customers_moving));
+    for(auto time: customers_moving){
+        current+=time.second;
+        answer = max(answer,current);
+    }
+    cout<<answer;
     return 0;
 }
