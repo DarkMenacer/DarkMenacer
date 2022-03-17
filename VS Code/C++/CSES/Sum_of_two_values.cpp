@@ -3,7 +3,7 @@ Name:-              Sum of Two Values
 Platform:-          CSES
 Date:-              22 January 2022
 Type of Problem:-   Searching, 2 pointer method
-Complexity:-        O(n)
+Complexity:-        O(nlog(n))
 Status:-            Solved
 
 Solution in brief:

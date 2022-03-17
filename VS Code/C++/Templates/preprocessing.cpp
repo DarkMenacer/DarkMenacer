@@ -26,17 +26,25 @@ using namespace std;
 #define pb push_back
 #define all(name) name.begin(),name.end()
 
+//*) containers
+#define vi vector<int>
+#define vii vector < pair<int,int> > 
+
+//*) taking inputs in containers
+#define take_loop_input_in(name,size) for(int i=0;i<size;++i){cin>>name[i];}
+#define take_indexed_loop_input(name,size) for(int i=1;i<size+1;++i){int x;cin>>x;name.push_back(make_pair(x,i));}
+
+//*) Pair
+#define f first
+#define s second
+#define mp make_pair
+#define p pair
+
 //*) debugging
 #define here cout<<"here\n"
 #define nl cout<<'\n'
 #define display(name) for(auto it: name){cout<<it<<" ";}cout<<"\n"
 #define what_is___here(name) cout<<"It is "<<name<<"\n"
-
-//2) Pair
-#define f first
-#define s second
-#define mp make_pair
-#define p pair
 
 //Whatever this is
 #define fastIO ios_base::sync_with_stdio(0 && cin.tie(0) && cout.tie(0));
