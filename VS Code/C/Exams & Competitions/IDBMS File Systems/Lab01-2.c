@@ -1,3 +1,23 @@
+/*
+
+6 September 2022
+
+Create a file marks (.txt or .dat) to store marks (assuming same subjects for all branch students) of registered students of a university. 
+The file should store student ID, marks of DBMS, DS, C, TOTAL, and PERCENTAGE The following constraints should be satisfied to store the information in student table
+    - Marks of only the registered students are allowed to store in the table.
+    - The maximum marks of each subject cannot exceed 100.
+
+Perform the following query operation using the student and marks information. (NOTE: Create a menu driven program for better understanding)
+    i. Insert marks of all the registered students.
+    ii. Updating marks of one subject should also update TOTAL and PERCENTAGE marks.
+    iii. Deletion of a student record from the student file should also delete his marks records from the marks file as the student is no longer a registered student.
+    iv. Show the marks list (Marks of all subjects, TOTAL, and PERCENTAGE) of a student using his student ID.
+    v. Search the students with PERCENTAGE above a threshold.
+    vi. Search the students of a particular BRANCH with PERCENTAGE above a threshold.
+
+*/
+
+
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>

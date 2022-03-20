@@ -1,3 +1,28 @@
+/*
+Write a c program to simulate following memory mapping using bitwise operators.
+
+A computer system has a main memory consisting of 8K 8-bit words. It also has a 2K-word cache with 4 words per block.
+
+
+a) For four-way set associative mapping, compute the number of bits in each of the TAG, BLOCK/SET and WORD fields of the main memory address format.
+
+b) Assume that the cache is initially empty. The processor fetches a word from address k (to be given by user). Show how the address bits will determine the cache block and word for the given memory address.
+
+EXPECTED OUTPUT:
+No. of blocks in cache are:-
+No. of bits required for word is:-
+No. of bits required for block is:-
+No. of bits for tag is:-
+
+
+Enter memory address:   AAAA (in decimal)
+Word Address is:-
+
+Block Address is:
+
+*/
+
+
 #include <stdio.h>
 #include <math.h>
 

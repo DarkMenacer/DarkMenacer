@@ -1,3 +1,21 @@
+/*
+
+6 September 2022
+
+Create a file students (.txt or .dat) to store information of students of a university. The file should store student ID, NAME, and BRANCH. The following constraints should be satisfied to store the information in student table
+    - Each student should have a unique student ID.
+    - Insertion of a student with existing student ID should not be allowed.
+    
+Perform the following operation on the created student records. (NOTE: Create a menu driven program for better understanding)
+    i. Insert 10 students in the student database.
+    ii. Modify the NAME or BRANCH (CSE, EE, and ECE) of the student. Note that the modification of Student ID should not be allowed.
+    iii. Delete the student using the Student ID.
+    iv. Search the list of students using BRANCH.
+    v. Search the student by their NAME.
+
+*/
+
+
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
