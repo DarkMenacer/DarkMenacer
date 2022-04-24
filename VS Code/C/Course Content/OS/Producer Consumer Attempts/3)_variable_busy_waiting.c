@@ -23,6 +23,7 @@ void *produce(){
             data+=1;
             printf("Producer exits,(data = %d)\n",data);
             if(data != init_data + 1){printf("THIS SHOULD NOT BE PRINTED\n");}
+            key = rand()%2;
         }
         else{key=1;}
     }
@@ -38,6 +39,7 @@ void *consume(){
             data-=1;
             printf("Consumer exits,(data = %d)\n",data);
             if(data != init_data - 1){printf("THIS SHOULD NOT BE PRINTED\n");}
+            key = rand()%2;
         }
         else{key = 0;}
     }

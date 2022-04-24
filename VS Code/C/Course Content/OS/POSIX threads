@@ -23,4 +23,13 @@ Pthreads:-
     4) pthread_join(threadid, status) : blocks the calling thread until the specified threadid thread terminates
     5) pthread_detach(threadit, status) : ????
     6) sched_yield() : force the running thread to relinquish the processor until it again becomes the head of its thread list.
-
+    
+2) Mutexes
+    1) pthread_mutex_init(&pthread_mutex_t, NULL) : returns 0 if mutex is successfully completed.
+    2) pthread_mutex_lock(&pthread_mutex_t) : locks mutex, or and if already locked, the calling thread shall block 
+                                              until the mutex becomes available.
+    3) pthread_mutex_unlock(&pthread_mutex_t) : unlocks mutex (further allowing someone else or itself to lock it again).
+    4) pthread_mutex_trylocK(&pthread_mutex_t) : tries to lock mutex, returns 0 if sucessfully, else returns -1.
+    5) sem_init(&sem_t, 0, init_value) : initialise a semaphore with initial value 'init_value'.
+    6) sem_wait(&sem_t) : decrement semaphore value, if semaphore is 0, then wait until it is incremented.
+    7) sme_post(&sem_t) : increment semaphore value.

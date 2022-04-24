@@ -1,42 +1,24 @@
 /*
-    Date:-                              23 April 2022
-    Name of the approach:-              Naive
-    Feature:-                           Threads
-    One line description:-              Problems in Race conditions
-    How it beats its predecessor:-      Naive
-    Points of failure:-           
-        1) Too less milk when:-      
-            #define LIMITING_QUANTITY 1     //Quantity below which milk has to be bought
-
-        2) Too much milk when:- 
-            #define LIMITING_QUANTITY 6
+    Date:-                          24 April 2022
+    Name of the approach:-          Peterson's Solution
+    Feature:-                       Mutex
+    One line description:-          Unsatisfactory but atleast Jack and Jill stay together
+    How it beats its predecessor:-  Mutual Exclusion in critical section
+    Points of failure:-             A lot of busy-waiting
 
     Explanation:-
-        In case of 1), code fails when Jack checks quantity of milk and realises that there is sufficient milk and 
-        Jill has drank her part and Jill thinks the same hence no one buys milk.
-        Output (in some cases):-
-            JackJill says: Sufficient milk for today
-            Jack didn't buy milk that day
-            Jack consumed milk,  says: Sufficient milk for today
-            Jill didn't buy milk that day
-            Jill consumed milk, Milk quantity: -5 
-            Milk quantity: -5 
-            No milk today
-            Divorce!
+        So what changed from last time? Unable to figure out a solution, you took help from our OS expert friend Peterson.
+        He suggested using sticky notes (mutexes). Whenever in doubt, use a sticky note.
+        Introduction of (sticky notes) mutexes solves almost all synchronization issues. Mutexes are just fancy booleans. 
+        When mutex is (say) '1', only Jack (puts a sticky note and goes to buy milk) is allowed to access the critical region.
+        And when mutex is (say) '2', only Jill is allowed.
+        
+        The disadvantage of this method (had higher expectations from you, Peterson) is that the person who is waiting for the other
+        to come from market lives in anxiety of too less/more milk, i.e. the thread is continously using the CPU, 
+        checking when the mutex is unlocked so that it can be locked again. Hence solution has a scope of improvement.
 
-        In case of 2), code fails when both Jack and Jill buy milk due to problems in timings.
-        Jill goes to market to buy a pack when Jack is already on his way from market with a pack of milk.
-        Output (in some cases):-
-            JackJill says: Oh no! Time to buy milk
-            Jack buys milk, now  says: Oh no! Time to buy milk
-            Jill buys milk, now Milk quantity: 25 
-            Jill consumed milk, Milk quantity: 20 
-            Milk quantity: 20 
-            Jack consumed milk, Milk quantity: 15 
-            Too much milk today
-            Divorce!
-
-    NOTE: Run multiple times if the mentioned points of failure are not incurred.  
+    NOTE: Run multiple times if the mentioned points of failure are not incurred.
+    
 */
 
 
@@ -52,7 +34,7 @@
 #define here printf("here\n")
 #define TOO_MUCH 11
 #define INITIAL 5
-#define LIMITING_QUANTITY 6     //Quantity below which milk has to be bought
+#define LIMITING_QUANTITY 1     //Quantity below which milk has to be bought
 #define QUANTITY_BOUGHT 10
 #define QUANTITY_CONSUMED 5
 #define JACK_ID 111
@@ -62,6 +44,7 @@
 #define how_much_milk printf("Milk quantity: ");cout_var(milk);nl;
 
 int milk = INITIAL;
+pthread_mutex_t sticky_note;
 
 bool check_milk(int id){
     who_does;
@@ -77,6 +60,7 @@ void buy_milk(int id){
 }
 
 void *routine(void *arg){
+    pthread_mutex_lock(&sticky_note);
     int id = *(int *)arg;
     bool quantity = check_milk(id);
     if(!quantity){buy_milk(id);}
@@ -84,10 +68,12 @@ void *routine(void *arg){
     who_does;printf(" consumed milk, ");
     milk-=QUANTITY_CONSUMED;
     how_much_milk;
+    pthread_mutex_unlock(&sticky_note);
     pthread_exit(0);
 }
 
 int main(){
+    pthread_mutex_init(&sticky_note,NULL);
     nl;
     pthread_t jack, jill;
     int jack_id = JACK_ID, jill_id = JILL_ID;
