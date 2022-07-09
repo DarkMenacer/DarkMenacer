@@ -11,7 +11,7 @@
 #include <unordered_set>  // unordered set/multiset
 #include <unordered_map>  // unordered map/multimap
 #include <iterator>
-#include <algorithm>   // includes sort()
+#include <algorithm>   // includes sort(), count()
 #include <numeric>    // some numeric algorithm
 #include <functional>
 #include <tuple>
@@ -25,10 +25,14 @@ using namespace std;
 #define FOR(i,start,upper_limit) for(i=start;i<upper_limit;++i)
 #define pb push_back
 #define all(name) name.begin(),name.end()
+#define ll long long
+#define inf 1e9
 
 //*) containers
 #define vi vector<int>
-#define vii vector < pair<int,int> > 
+#define vii vector < pair<int,int> >
+#define si set<int>
+#define msi multiset<int>
 
 //*) taking inputs in containers
 #define take_loop_input_in(name,size) for(int i=0;i<size;++i){cin>>name[i];}
@@ -44,17 +48,11 @@ using namespace std;
 #define here cout<<"here\n"
 #define nl cout<<'\n'
 #define display(name) for(auto it: name){cout<<it<<" ";}cout<<"\n"
-#define what_is___here(name) cout<<"It is "<<name<<"\n"
+#define display_paired(name) for(auto it: name){cout<<it.first<<"("<<it.second<<") ";}cout<<"\n"
+#define what_is_here(name) cout<<#name<<": "<<name<<"\n"
+
+#define free_cin cin.sync_with_stdio(false)
+#define free_cout cout.sync_with_stdio(false)
 
 //Whatever this is
-#define fastIO ios_base::sync_with_stdio(0 && cin.tie(0) && cout.tie(0));
 int32_t mod = 1e9 + 7;
-void solve()
-{/* Code here*/}
-
-int32_t main()
-{
-    fastIO;
-    solve();
-    return 0;
-}
