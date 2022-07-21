@@ -1,7 +1,7 @@
-import React, {useState} from "react";
+import React, {useState, useEffect} from "react";
 import '../Styles/Buttonstyle.css'
 
-const CountButton = (props) => {
+const CountButton = (props /* other way as well, use {} */) => {
     /* let counter = 0;
     return <div>
         <div>{counter}</div>
@@ -12,9 +12,21 @@ const CountButton = (props) => {
     const [Counter, setCounter] = useState(0);
 
     const handleClick = () => {
-        console.log("Clicked");
+        /* console.log("Clicked"); */
         setCounter(Counter+props.increment);
     }
+
+
+    useEffect(()=>{
+        console.log("Button " + props.increment + " Effect");
+    },[Counter, props.increment]);
+
+    useEffect(()=>{
+        if(Counter > 14){
+            setCounter(0);
+        }
+    },[Counter]);
+
 
     return <span>
         <span>  value : {Counter}  </span>

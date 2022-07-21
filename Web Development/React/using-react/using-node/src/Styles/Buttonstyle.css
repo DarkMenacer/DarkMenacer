@@ -1,8 +1,6 @@
 button{
     width: 4rem;
     color: red;
-}
-
-.topsignal{
-    background-color: green;
+    background-color: lightgreen;
+    border-radius: 0.5rem;
 }
