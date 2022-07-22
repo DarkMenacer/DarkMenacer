@@ -22,10 +22,10 @@ const CountButton = (props /* other way as well, use {} */) => {
     },[Counter, props.increment]);
 
     useEffect(()=>{
-        if(Counter > 14){
+        if(Counter > 8){
             setCounter(0);
         }
-    },[Counter]);
+    },[Counter, props.increment]);
 
 
     return <span>

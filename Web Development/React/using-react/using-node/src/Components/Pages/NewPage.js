@@ -5,13 +5,13 @@ const NewPage = () => {
 
     const navigate = useNavigate();
     const handleClick = () =>{
-        navigate('/');
+        navigate('/home');
     }
 
 
     return (
         <div>
-            This is a new page altogether
+            Notice the button "Go Back" instead of link
             <div>
             <button onClick={handleClick}>Go Back</button>
             </div>
