@@ -14,12 +14,12 @@ syntax on
 filetype on
 
 " Autocomplete brackets
-inoremap { {}<Esc>ha
-inoremap ( ()<Esc>ha
-inoremap [ []<Esc>ha
-inoremap " ""<Esc>ha
-inoremap ' ''<Esc>ha
-inoremap ` ``<Esc>ha
+"inoremap { {}<Esc>ha
+"inoremap ( ()<Esc>ha
+"inoremap [ []<Esc>ha
+"inoremap " ""<Esc>ha
+"inoremap ' ''<Esc>ha
+"inoremap ` ``<Esc>ha
 
 "plugin-manager: vim-plug
 call plug#begin()
