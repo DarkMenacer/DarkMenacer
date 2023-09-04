@@ -44,7 +44,7 @@ autocmd BufEnter * if tabpagenr('$') == 1 && winnr('$') == 1 && exists('b:NERDTr
 
 "---
 "ALE Settings
-let b:ale_fixers = {'javascript': ['prettier', 'eslint'] }
+let b:ale_fixers = {'javascript': ['prettier', 'eslint'], 'python': ['flake8', 'autopep8']}
 let g:ale_fix_on_save = 1
 let g:ale_virtualtext_cursor = 'disabled'
 let g:ale_cpp_clangd_options = "-stdlib=libc++ -std=c++20"
