@@ -48,6 +48,9 @@ let b:ale_fixers = {'javascript': ['prettier', 'eslint'], 'python': ['autopep8']
 let g:ale_fix_on_save = 1
 let g:ale_virtualtext_cursor = 'disabled'
 let g:ale_cpp_clangd_options = "-stdlib=libc++ -std=c++20"
+" let g:ale_cpp_uncrustify_executable = 'uncrustify'
+let g:ale_cpp_uncrustify_options = '--no-backup --config .uncrustify.cfg'
+
 
 "---
 "Ultisnips Settings
@@ -57,6 +60,17 @@ let g:UltiSnipsJumpBackwardTrigger="<c-z>"
 "---
 
 "---
-"Edge settings
+"Edge Settings
 colorscheme edge
 "---
+
+"---
+"Vim Integrated Terminal Settings
+
+"open terminal below all splits
+cabbrev bterm bo term
+
+"---
+
+
+
