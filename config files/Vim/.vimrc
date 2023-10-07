@@ -29,6 +29,7 @@ call plug#begin()
 	Plug 'itchyny/lightline.vim'
 	Plug 'sainnhe/edge'
 	Plug 'https://github.com/tpope/vim-commentary'
+	Plug 'neoclide/coc.nvim', {'branch': 'release'} "Soon to switch to deoplete or dcc as ALE + COC has a lot of redundancy, don't like how much VSCode-ish it sounds like
 call plug#end()
 
 "---
@@ -48,7 +49,6 @@ let b:ale_fixers = {'javascript': ['prettier', 'eslint'], 'python': ['autopep8']
 let g:ale_fix_on_save = 1
 let g:ale_virtualtext_cursor = 'disabled'
 let g:ale_cpp_clangd_options = "-stdlib=libc++ -std=c++20"
-" let g:ale_cpp_uncrustify_executable = 'uncrustify'
 let g:ale_cpp_uncrustify_options = '--no-backup --config .uncrustify.cfg'
 
 
@@ -71,6 +71,23 @@ colorscheme edge
 cabbrev bterm bo term
 
 "---
+
+"---
+"coc.nvim Settings
+filetype plugin on
+
+let b:coc_diagnostic_disable=1
+inoremap <silent><expr> <TAB> coc#pum#visible() ? coc#pum#next(1) : CheckBackspace() ? "\<Tab>" : coc#refresh()
+inoremap <expr><S-TAB> coc#pum#visible() ? coc#pum#prev(1) : "\<C-h>"
+inoremap <silent><expr> <CR> coc#pum#visible() ? coc#pum#confirm(): "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
+inoremap <silent><expr> <c-@> coc#refresh()
+
+" :CocInstall coc-clangd coc-pyright coc-tsserver coc-json @yaegassy/coc-tailwindcss3
+
+"---
+
+
+
 
 
 
