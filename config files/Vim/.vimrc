@@ -21,6 +21,9 @@ filetype on
 "inoremap ' ''<Esc>ha
 "inoremap ` ``<Esc>ha
 
+"Programming Language Variables
+let g:python3_host_prog= '/usr/bin/python3'
+
 "plugin-manager: vim-plug
 call plug#begin()
 	Plug 'https://github.com/preservim/nerdtree'
@@ -41,7 +44,6 @@ autocmd VimEnter * NERDTree | wincmd p
 
 " Exit Vim if NERDTree is the only window remaining in the only tab.
 autocmd BufEnter * if tabpagenr('$') == 1 && winnr('$') == 1 && exists('b:NERDTree') && b:NERDTree.isTabTree() | quit | endif
-
 
 "---
 "ALE Settings
