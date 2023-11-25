@@ -14,7 +14,7 @@ call plug#begin()
 
 	"Fixers:
 	Plug 'https://github.com/embear/vim-uncrustify'
-	Plug 'https://github.com/tell-k/vim-autopep8'
+	Plug 'https://github.com/tell-k/vim-autopep8' "Switch to yapf, need to solve indentation to space (not tab) constraint of autopep8 (yapf is more flexible)
 	Plug 'editorconfig/editorconfig-vim'
 	Plug 'prettier/vim-prettier', { 'do': 'sudo npm install --frozen-lockfile --production  --legacy-peer-deps' }
 
@@ -32,17 +32,20 @@ call plug#end()
 set relativenumber
 set nu rnu
 set tabstop=4
+set softtabstop=4
 set autoindent
 set shiftwidth=4
 set mouse=a
 set cursorline
-setlocal foldmethod=syntax
+set foldmethod=syntax
 set foldlevel=99
 set nowrap
 set backspace=indent,eol,start
 "colorscheme habamax
 syntax on
 filetype on
+filetype plugin indent on
+set expandtab
 
 "---------------
 "Vim Integrated Terminal Settings
@@ -76,7 +79,7 @@ let g:UltiSnipsJumpBackwardTrigger="<c-z>"
 "---------------
 "COCnvim Settings: :CocInstall coc-clangd coc-pyright coc-tsserver coc-json @yaegassy/coc-tailwindcss3
 filetype plugin on
-let b:coc_diagnostic_disable=0
+let g:coc_diagnostic_disable=0
 inoremap <silent><expr> <TAB> coc#pum#visible() ? coc#pum#next(1) : CheckBackspace() ? "\<Tab>" : coc#refresh()
 inoremap <expr><S-TAB> coc#pum#visible() ? coc#pum#prev(1) : "\<C-h>"
 inoremap <silent><expr> <CR> coc#pum#visible() ? coc#pum#confirm(): "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
@@ -93,9 +96,11 @@ autocmd BufWritePre <buffer> if (&filetype == 'c') | call Uncrustify() | endif
 
 "---------------
 "Autopep8:
-autocmd BufWritePre <buffer> if (&filetype == 'python') | call Autopep8() | endif
-let g:autopep8_max_line_length=999
-let g:autopep8_disable_show_diff=1
+" autocmd BufWritePre <buffer> if (&filetype == 'python') | call Autopep8() | endif
+let g:autopep8_max_line_length = 999
+let g:autopep8_disable_show_diff = 1
+let g:autopep8_on_save = 1
+let g:autopep8_ignore = "W191,E101,E111"
 
 "---------------
 "EditorConfig:
