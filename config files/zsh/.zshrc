@@ -27,3 +27,5 @@ alias rm_configs='rm_vim_configs && rm_profile_configs && rm_python_configs && r
 alias add_configs='add_vim_configs && add_profile_configs && add_python_configs && add_cxx_configs && add_git_configs'
 alias backup_configs='rm_configs && add_configs && echo "Config files updated in the repository"'
 export PATH="/Users/pranavchatur/Library/Python/3.9/bin:$PATH"
+
+alias cls='clear'

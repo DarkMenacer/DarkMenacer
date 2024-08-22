@@ -7,6 +7,7 @@ call plug#begin()
 	Plug 'https://github.com/preservim/nerdtree'
 	Plug 'itchyny/lightline.vim'
 	Plug 'https://github.com/nanotech/jellybeans.vim'
+	Plug 'https://github.com/tmhedberg/SimpylFold'
 
 	"Autocompletion:
 	Plug 'SirVer/ultisnips'
@@ -56,6 +57,30 @@ syntax on
 filetype on
 filetype plugin indent on
 set expandtab
+
+"LazyShiftFinger:
+command! -bar -nargs=* -complete=file -range=% -bang W         <line1>,<line2>write<bang> <args>
+command! -bar -nargs=* -complete=file -range=% -bang Write     <line1>,<line2>write<bang> <args>
+command! -bar -nargs=* -complete=file -range=% -bang Wq        <line1>,<line2>wq<bang> <args>
+command! -bar -nargs=* -complete=file -range=% -bang WQ        <line1>,<line2>wq<bang> <args>
+command! -bar                                  -bang Wqall     wqa<bang>
+command! -bar -nargs=* -complete=file -range=% -bang We        <line1>,<line2>w<bang> | e <args>
+command! -bar -nargs=* -complete=file -count   -bang Wnext     <count>wnext<bang> <args>
+command! -bar -nargs=* -complete=file -count   -bang Wprevious <count>wprevious<bang> <args>
+command! -bar -nargs=* -complete=file          -bang E         edit<bang> <args>
+command! -bar -nargs=* -complete=file          -bang Edit      edit<bang> <args>
+command! -bar                                  -bang Q         quit<bang>
+command! -bar                                  -bang Quit      quit<bang>
+command! -bar                                  -bang Qall      qall<bang>
+command! -bar -nargs=? -complete=option              Set       set <args>
+command! -bar -nargs=? -complete=help                Help      help <args>
+command! -bar -nargs=* -complete=file          -bang Make      make<bang> <args>
+command! -bar -nargs=* -complete=buffer        -bang Bdel      bdel<bang> <args>
+command! -bar -nargs=* -complete=buffer        -bang Bwipe     bwipe<bang> <args>
+command! -bar -nargs=* -complete=file          -bang Mksession mksession<bang> <args>
+command! -bar -nargs=* -complete=dir           -bang Cd        cd<bang> <args>
+command! -bar                                        Messages  messages
+command! -bar -nargs=+ -complete=file          -bang Source    source<bang> <args>
 
 "For Windows->Powershell:
 "set shell=C:\\WINDOWS\\sysnative\\WindowsPowerShell\\v1.0\\powershell.exe
@@ -123,8 +148,6 @@ autocmd BufWritePre <buffer> if (&filetype == 'c') | call Uncrustify() | endif
 "---------------
 "Yapf:
 autocmd BufWritePre <buffer> if (&filetype == 'python') | call Yapf() | endif
-autocmd BufLeave *.py set noexpandtab
-autocmd BufReadPost *.py set expandtab
 
 "---------------
 "EditorConfig:
@@ -136,6 +159,9 @@ let g:EditorConfig_exec_path = '~/.editorconfig'
 "---------------
 "Programming Language Variables:
 let g:python3_host_prog= '/usr/bin/python3'
+autocmd BufLeave *.py set noexpandtab
+autocmd BufReadPost *.py set expandtab
+autocmd BufEnter *.py set expandtab
 
 "---------------
 "ALE Settings:
