@@ -29,3 +29,4 @@ alias backup_configs='rm_configs && add_configs && echo "Config files updated in
 export PATH="/Users/pranavchatur/Library/Python/3.9/bin:$PATH"
 
 alias cls='clear'
+alias :q='exit'

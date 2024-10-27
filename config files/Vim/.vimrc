@@ -57,6 +57,7 @@ syntax on
 filetype on
 filetype plugin indent on
 set expandtab
+"typeface/font-family set in terminal: cutive-mono
 
 "LazyShiftFinger:
 command! -bar -nargs=* -complete=file -range=% -bang W         <line1>,<line2>write<bang> <args>
@@ -121,7 +122,7 @@ let g:UltiSnipsJumpBackwardTrigger="<c-z>"
 "---------------
 "COCnvim Settings: :CocInstall coc-clangd coc-pyright coc-tsserver coc-json @yaegassy/coc-tailwindcss3
 filetype plugin on
-let g:coc_diagnostic_disable=0
+let g:coc_diagnostic_disable=1
 
 " GoTo code navigation
 nmap <silent> gd <Plug>(coc-definition)
@@ -130,24 +131,22 @@ nmap <silent> gi <Plug>(coc-implementation)
 nmap <silent> gr <Plug>(coc-references)
 "use exuberant ctags for ctrl-click: Run 'ctags —extras=-F -R' in terminal to generate the tags file
 
-
 inoremap <silent><expr> <TAB> coc#pum#visible() ? coc#pum#next(1) : CheckBackspace() ? "\<Tab>" : coc#refresh()
 inoremap <expr><S-TAB> coc#pum#visible() ? coc#pum#prev(1) : "\<C-h>"
 inoremap <silent><expr> <CR> coc#pum#visible() ? coc#pum#confirm(): "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
 inoremap <silent><expr> <c-@> coc#refresh()
-"BUG: :call CocAction('diagnosticToggle') after opening file from NERDTree
 
 "-----------------------------------------------------------------------------------------------------------------------
 "Fixers:
 
 "---------------
 "Uncrustify:
-autocmd BufWritePre <buffer> if (&filetype == 'cpp') | call Uncrustify() | endif
-autocmd BufWritePre <buffer> if (&filetype == 'c') | call Uncrustify() | endif
+autocmd BufWritePre <buffer> if (&filetype == 'cpp' || &filetype == 'c') | :call Uncrustify() | endif
+autocmd BufWritePre <buffer> if (&filetype == 'hpp' || &filetype == 'h') | :call Uncrustify() | endif
 
 "---------------
 "Yapf:
-autocmd BufWritePre <buffer> if (&filetype == 'python') | call Yapf() | endif
+autocmd BufWritePre <buffer> if (&filetype == 'python') | :call Yapf() | endif
 
 "---------------
 "EditorConfig:
@@ -169,6 +168,10 @@ let g:ale_fix_on_save = 0
 let g:ale_virtualtext_cursor = 'disabled'
 let g:ale_cpp_clangd_options = "-stdlib=libc++ -std=c++20"
 "Linters: (clangd, eslint, tslint, flake8...something for react?)
+
+"---------------
+"Vim Commentary Settings:
+autocmd FileType c,cpp setlocal commentstring=//\ %s
 
 "-----------------------------------------------------------------------------------------------------------------------
 "Archive:
