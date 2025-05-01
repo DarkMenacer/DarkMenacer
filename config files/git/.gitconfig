@@ -6,3 +6,5 @@
 [user]
 	name = Pranav Chatur
 	email = pranavchatur@gmail.com
+[push]
+	autoSetupRemote = true

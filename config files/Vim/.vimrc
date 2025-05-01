@@ -12,6 +12,7 @@ call plug#begin()
 	"Autocompletion:
 	Plug 'SirVer/ultisnips'
 	Plug 'neoclide/coc.nvim', {'branch': 'release'} "Soon to switch to deoplete or dcc as ALE + COC has a lot of redundancy, don't like how much VSCode-ish it sounds like
+	" Plug 'David-Kunz/gen.nvim' Need to switch Neovim to be able to use Ollama and LLMs. TIME TO WRITE A VIMSCRIPT OF MY OWN
 
 	"Git:
 	Plug 'https://github.com/tpope/vim-fugitive'
@@ -136,13 +137,18 @@ inoremap <expr><S-TAB> coc#pum#visible() ? coc#pum#prev(1) : "\<C-h>"
 inoremap <silent><expr> <CR> coc#pum#visible() ? coc#pum#confirm(): "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
 inoremap <silent><expr> <c-@> coc#refresh()
 
+"---------------
+"GenNvim Settings:
+
+
 "-----------------------------------------------------------------------------------------------------------------------
 "Fixers:
 
 "---------------
 "Uncrustify:
-autocmd BufWritePre <buffer> if (&filetype == 'cpp' || &filetype == 'c') | :call Uncrustify() | endif
-autocmd BufWritePre <buffer> if (&filetype == 'hpp' || &filetype == 'h') | :call Uncrustify() | endif
+autocmd BufWritePre <buffer> if (&filetype == 'cpp') | :call Uncrustify() | endif
+autocmd BufWritePre <buffer> if (&filetype == 'c') | :call Uncrustify() | endif
+autocmd BufWritePre <buffer> if (&filetype == 'h') | :call Uncrustify() | endif
 
 "---------------
 "Yapf:
@@ -167,6 +173,7 @@ autocmd BufEnter *.py set expandtab
 let g:ale_fix_on_save = 0
 let g:ale_virtualtext_cursor = 'disabled'
 let g:ale_cpp_clangd_options = "-stdlib=libc++ -std=c++20"
+let g:ale_cmake_executable = 'cmake'
 "Linters: (clangd, eslint, tslint, flake8...something for react?)
 
 "---------------
