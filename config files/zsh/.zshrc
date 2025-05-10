@@ -22,11 +22,13 @@ alias add_profile_configs='cp ~/.zprofile ~/DarkMenacer/config\ files/zsh/ && cp
 alias add_python_configs='cp ~/.flake8 ~/DarkMenacer/config\ files/python/ && cp ~/.style.yapf ~/DarkMenacer/config\ files/python/'
 alias add_cxx_configs='cp ~/.uncrustify.cfg ~/DarkMenacer/config\ files/cpp/'
 alias add_git_configs='cp ~/.hooks4git.ini ~/DarkMenacer/config\ files/git/ && cp ~/.gitconfig ~/DarkMenacer/config\ files/git/'
+alias add_tmux_configs='cp ~/.tmux.conf ~/DarkMenacer/config\ files/tmux/ && cp ~/sidev.sh ~/DarkMenacer/config\ files/tmux/ && cp ~/competitor.sh ~/DarkMenacer/config\ files/tmux/'
 
-alias rm_configs='rm_vim_configs && rm_profile_configs && rm_python_configs && rm_cxx_configs'
-alias add_configs='add_vim_configs && add_profile_configs && add_python_configs && add_cxx_configs && add_git_configs'
-alias backup_configs='rm_configs && add_configs && echo "Config files updated in the repository"'
+# alias rm_configs='rm_vim_configs && rm_profile_configs && rm_python_configs && rm_cxx_configs'
+alias add_configs='add_vim_configs && add_profile_configs && add_python_configs && add_cxx_configs && add_git_configs && add_tmux_configs'
+alias backup_configs='add_configs && echo "Config files updated in the repository"'
 export PATH="/Users/pranavchatur/Library/Python/3.9/bin:$PATH"
 
 alias cls='clear'
 alias :q='exit'
+export TERM=xterm-256color

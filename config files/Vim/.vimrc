@@ -4,13 +4,19 @@
 call plug#begin()
 
 	"Appearence:
-	Plug 'https://github.com/preservim/nerdtree'
+	Plug 'https://github.com/morhetz/gruvbox'
 	Plug 'itchyny/lightline.vim'
-	Plug 'https://github.com/nanotech/jellybeans.vim'
 	Plug 'https://github.com/tmhedberg/SimpylFold'
+
+	"Files:
+	Plug 'https://github.com/preservim/nerdtree' |
+				\ Plug 'Xuyuanp/nerdtree-git-plugin'
+	Plug 'https://github.com/ctrlpvim/ctrlp.vim'
+	" Plug 'https://github.com/christoomey/vim-tmux-navigator' TODO: Add when felt need
 
 	"Autocompletion:
 	Plug 'SirVer/ultisnips'
+	Plug 'https://github.com/tpope/vim-commentary'
 	Plug 'neoclide/coc.nvim', {'branch': 'release'} "Soon to switch to deoplete or dcc as ALE + COC has a lot of redundancy, don't like how much VSCode-ish it sounds like
 	" Plug 'David-Kunz/gen.nvim' Need to switch Neovim to be able to use Ollama and LLMs. TIME TO WRITE A VIMSCRIPT OF MY OWN
 
@@ -25,21 +31,18 @@ call plug#begin()
 	Plug 'https://github.com/simonrw/vim-yapf'
 	Plug 'prettier/vim-prettier', { 'do': 'sudo npm install --frozen-lockfile --production  --legacy-peer-deps' } "Extreme Irritating, Need to switch completely to eslint only
 
-	"Linters:
+	"Linters: TODO: Go through available config options
 	Plug 'https://github.com/dense-analysis/ale'
-	Plug 'https://github.com/tpope/vim-commentary'
 	Plug 'eslint/eslint'
 
 	"Retired:
+	"Plug 'https://github.com/nanotech/jellybeans.vim'
 	"Plug 'sainnhe/edge'
 	"Plug 'https://github.com/tell-k/vim-autopep8'
 
 call plug#end()
 
 "-----------------------------------------------------------------------------------------------------------------------
-"Appearence:
-
-"---------------
 "VimVariables:
 set relativenumber
 set nu rnu
@@ -53,12 +56,14 @@ set foldmethod=syntax
 set foldlevel=99
 set nowrap
 set backspace=indent,eol,start
-colorscheme jellybeans
+set showcmd
 syntax on
 filetype on
 filetype plugin indent on
 set expandtab
-"typeface/font-family set in terminal: cutive-mono
+"Change leader to Spacebar (from \)
+nnoremap <SPACE> <Nop>
+let mapleader=" "
 
 "LazyShiftFinger:
 command! -bar -nargs=* -complete=file -range=% -bang W         <line1>,<line2>write<bang> <args>
@@ -84,32 +89,62 @@ command! -bar -nargs=* -complete=dir           -bang Cd        cd<bang> <args>
 command! -bar                                        Messages  messages
 command! -bar -nargs=+ -complete=file          -bang Source    source<bang> <args>
 
-"For Windows->Powershell:
-"set shell=C:\\WINDOWS\\sysnative\\WindowsPowerShell\\v1.0\\powershell.exe
-"set termguicolors
-"set t_ut=""
-
-
 "---------------
 "Vim Integrated Terminal Settings
 
 "open terminal below all splits
 cabbrev bterm bo term
 
+"For Windows->Powershell:
+"set shell=C:\\WINDOWS\\sysnative\\WindowsPowerShell\\v1.0\\powershell.exe
+"set shell=cmd
+"set shellcmdflag=/c
+"set termguicolors
+"set t_ut=""
+
+"-----------------------------------------------------------------------------------------------------------------------
+"Appearence:
+
 "---------------
-"NERDTree Settings:
-let g:NERDTreeWinPos = "right"
-
-"Start NERDTree and put the cursor back in the other window.
-autocmd VimEnter * NERDTree | wincmd p
-
-"Exit Vim if NERDTree is the only window remaining in the only tab.
-autocmd BufEnter * if tabpagenr('$') == 1 && winnr('$') == 1 && exists('b:NERDTree') && b:NERDTree.isTabTree() | quit | endif
+"Colorscheme Settings:
+"typeface/font-family set in terminal: cutive-mono
+colorscheme gruvbox
+set background=dark
 
 "---------------
 "Lightline Settings:
+let g:lightline = {'colorscheme': 'gruvbox'}
 
-let g:lightline = {'colorscheme': 'jellybeans'}
+"-----------------------------------------------------------------------------------------------------------------------
+"Files:
+
+"---------------
+"NERDTree Settings:
+let g:NERDTreeWinPos = "right"
+" Toggle NERDTree with a keybinding
+nnoremap <C-]> :NERDTreeToggle<CR>
+"Start NERDTree and put the cursor back in the other window.
+autocmd VimEnter * NERDTree | wincmd p
+"Exit Vim if NERDTree is the only window remaining in the only tab.
+autocmd BufEnter * if tabpagenr('$') == 1 && winnr('$') == 1 && exists('b:NERDTree') && b:NERDTree.isTabTree() | quit | endif
+" Don't show the help line at the top
+let g:NERDTreeMinimalUI=1
+
+"---------------
+"NERDTree Git Settings:
+let g:NERDTreeGitStatusAsync = 1
+
+"---------------
+"CTRLP Settings:
+let g:ctrlp_match_window = 'top,order:ttb'
+let g:ctrlp_use_caching = 1
+let g:ctrlp_cache_dir = '~/.cache/ctrlp'
+let g:ctrlp_show_hidden = 1
+let g:ctrlp_custom_ignore = {
+  \ 'dir':  '\v[\/](\.git|\.hg|\.svn|node_modules|bower_components|dist|build|out|__pycache__|venv|env|coverage|\.next|\.cache)$',
+  \ 'file': '\v\.(exe|dll|so|pyc|class|jar|log|zip|tar|gz|7z|DS_Store|swp|tmp|bak|orig)$',
+  \ }
+nnoremap <Leader>mru :CtrlPMRU<CR>
 
 "-----------------------------------------------------------------------------------------------------------------------
 "Autocompletion:
@@ -119,18 +154,38 @@ let g:lightline = {'colorscheme': 'jellybeans'}
 let g:UltiSnipsExpandTrigger="<tab>"
 let g:UltiSnipsJumpForwardTrigger="<c-b>"
 let g:UltiSnipsJumpBackwardTrigger="<c-z>"
+nnoremap <Leader>snip :UltiSnipsEdit<CR>
+
+"---------------
+"Vim Commentary Settings:
+autocmd FileType c,cpp setlocal commentstring=//\ %s
+autocmd FileType javascript,typescript setlocal commentstring=//\ %s
+autocmd FileType javascript.jsx,typescript.tsx setlocal commentstring={/*\ %s */}
 
 "---------------
 "COCnvim Settings: :CocInstall coc-clangd coc-pyright coc-tsserver coc-json @yaegassy/coc-tailwindcss3
 filetype plugin on
 let g:coc_diagnostic_disable=1
 
+"Use <C-k> and <C-j> to go up and down in the auto-completion dropdown
+inoremap <expr> <c-j> pumvisible() ? "\<C-n>" : "\<C-j>"
+inoremap <expr> <c-k> pumvisible() ? "\<C-p>" : "\<C-k>"
+
+" Show documentation (hover info)
+nnoremap <silent> K :call CocActionAsync('doHover')<CR>
+autocmd CursorHoldI * silent! call CocActionAsync('showSignatureHelp')
+autocmd CursorHold * silent call CocActionAsync('highlight')
+
 " GoTo code navigation
 nmap <silent> gd <Plug>(coc-definition)
+nnoremap <silent> gD <Plug>(coc-declaration)
 nmap <silent> gy <Plug>(coc-type-definition)
 nmap <silent> gi <Plug>(coc-implementation)
 nmap <silent> gr <Plug>(coc-references)
-"use exuberant ctags for ctrl-click: Run 'ctags —extras=-F -R' in terminal to generate the tags file
+nnoremap <leader>ff :CocList files<CR>
+
+" Refactoring
+nnoremap <leader>rn <Plug>(coc-rename)
 
 inoremap <silent><expr> <TAB> coc#pum#visible() ? coc#pum#next(1) : CheckBackspace() ? "\<Tab>" : coc#refresh()
 inoremap <expr><S-TAB> coc#pum#visible() ? coc#pum#prev(1) : "\<C-h>"
@@ -140,6 +195,27 @@ inoremap <silent><expr> <c-@> coc#refresh()
 "---------------
 "GenNvim Settings:
 
+"-----------------------------------------------------------------------------------------------------------------------
+"Git:
+
+"---------------
+"Fugitive:
+nnoremap <leader>gs :Gstatus<CR>
+nnoremap <leader>gd :Gdiffsplit<CR>
+nnoremap <leader>gt :G difftool<CR>
+nnoremap <leader>gb :Gblame<CR>
+nnoremap <leader>gl :Glog<CR>
+nnoremap <leader>gc :Gcommit<CR>
+nnoremap <leader>gp :Gpush<CR>
+nnoremap <leader>gP :Gpull<CR>
+"100s more, TODO
+
+"---------------
+"GitGutter:
+let g:gitgutter_enabled = 1
+let g:gitgutter_realtime = 1
+let g:gitgutter_eager = 1
+set updatetime=100
 
 "-----------------------------------------------------------------------------------------------------------------------
 "Fixers:
@@ -175,15 +251,14 @@ let g:ale_virtualtext_cursor = 'disabled'
 let g:ale_cpp_clangd_options = "-stdlib=libc++ -std=c++20"
 let g:ale_cmake_executable = 'cmake'
 "Linters: (clangd, eslint, tslint, flake8...something for react?)
-
-"---------------
-"Vim Commentary Settings:
-autocmd FileType c,cpp setlocal commentstring=//\ %s
+"100s more, TODO
 
 "-----------------------------------------------------------------------------------------------------------------------
 "Archive:
 
-"colorscheme habamax
+" colorscheme habamax
+" colorscheme edge
+" colorscheme jellybeans
 
 "---------------
 "Edge Settings:
