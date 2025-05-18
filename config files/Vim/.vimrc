@@ -172,9 +172,9 @@ inoremap <expr> <c-j> pumvisible() ? "\<C-n>" : "\<C-j>"
 inoremap <expr> <c-k> pumvisible() ? "\<C-p>" : "\<C-k>"
 
 " Show documentation (hover info)
-nnoremap <silent> K :call CocActionAsync('doHover')<CR>
-autocmd CursorHoldI * silent! call CocActionAsync('showSignatureHelp')
-autocmd CursorHold * silent call CocActionAsync('highlight')
+" nnoremap <silent> K :call CocActionAsync('doHover')<CR>
+" autocmd CursorHoldI * silent! call CocActionAsync('showSignatureHelp')
+" autocmd CursorHold * silent call CocActionAsync('highlight')
 
 " GoTo code navigation
 nmap <silent> gd <Plug>(coc-definition)
@@ -200,14 +200,14 @@ inoremap <silent><expr> <c-@> coc#refresh()
 
 "---------------
 "Fugitive:
-nnoremap <leader>gs :Gstatus<CR>
-nnoremap <leader>gd :Gdiffsplit<CR>
+nnoremap <leader>gs :G status<CR>
+nnoremap <leader>gd :G diffsplit<CR>
 nnoremap <leader>gt :G difftool<CR>
-nnoremap <leader>gb :Gblame<CR>
-nnoremap <leader>gl :Glog<CR>
-nnoremap <leader>gc :Gcommit<CR>
-nnoremap <leader>gp :Gpush<CR>
-nnoremap <leader>gP :Gpull<CR>
+nnoremap <leader>gb :G blame<CR>
+nnoremap <leader>gl :G log<CR>
+nnoremap <leader>gc :G commit<CR>
+nnoremap <leader>gp :G push<CR>
+nnoremap <leader>gP :G pull<CR>
 "100s more, TODO
 
 "---------------
