@@ -12,7 +12,8 @@ I like to keep updating the stuff that I am working on here for variety of purpo
 
 4. 💬 Despite coming off as reserved and eccentric, I love to find like-minded people and discuss things with them for hours and hours and hours...
 
-5. 🤝 It is so hard to summarise myself in 5 lines, please feel free to contact me at pranavchatur@outlook.com. There are so many more things worth discussing right? 
+<!-- 5. 🤝 It is so hard to summarise myself in 5 lines, please feel free to contact me at pranavchatur@outlook.com. There are so many more things worth discussing right? -->
+5. 🤝 It is so hard to summarise myself in 5 lines, please feel free to contact me at _...(under construction)_. There are so many more things worth discussing right?
 
 <!--
 - I am a philomath 👨‍🏫 and a melophile 🎶.
