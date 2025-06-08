@@ -1,4 +1,5 @@
-### Hello 👋 My name is Pranav Chatur. Nice to meet you
+<!-- ### Hello 👋 My name is Pranav Chatur. Nice to meet you-->
+### Hello 👋 Nice to meet you!
 I like to keep updating the stuff that I am working on here for variety of purposes. Please feel free to check my GitHub profile and repos and use them as you like it
 
 #### Here are 5 things I feel you should know about me 😊
