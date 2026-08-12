@@ -1,5 +1,9 @@
 {
-    "python.pythonPath": "usr/bin/python3",
+	"python.pythonPath": "usr/bin/python3",
 	"python.linting.flake8Enabled": true,
-	"diagnostic.enable": false
+	"diagnostic.enable": false,
+	"svelte.enable-ts-plugin": true,
+	"tsserver.preferences.importModuleSpecifierEnding": "js",
+	"javascript.preferences.importModuleSpecifierEnding": "js",
+	"typescript.preferences.importModuleSpecifierEnding": "js"
 }

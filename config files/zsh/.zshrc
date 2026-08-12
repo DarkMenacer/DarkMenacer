@@ -31,4 +31,14 @@ export PATH="/Users/pranavchatur/Library/Python/3.9/bin:$PATH"
 
 alias cls='clear'
 alias :q='exit'
+# alias opencode='ollama launch opencode'
 export TERM=xterm-256color
+
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+# PS1="%n@%m %1 % "
+# pranavchatur@Pranavs-MacBook-Pro TopFolder %
+PROMPT='%F{green}%n@Workspace%f %F{blue}%~%f
+$ '

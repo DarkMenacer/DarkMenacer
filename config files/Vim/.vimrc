@@ -18,7 +18,8 @@ call plug#begin()
 	Plug 'SirVer/ultisnips'
 	Plug 'https://github.com/tpope/vim-commentary'
 	Plug 'neoclide/coc.nvim', {'branch': 'release'} "Soon to switch to deoplete or dcc as ALE + COC has a lot of redundancy, don't like how much VSCode-ish it sounds like
-	" Plug 'David-Kunz/gen.nvim' Need to switch Neovim to be able to use Ollama and LLMs. TIME TO WRITE A VIMSCRIPT OF MY OWN
+	Plug 'evanleck/vim-svelte'
+	Plug 'alvan/vim-closetag'
 
 	"Git:
 	Plug 'https://github.com/tpope/vim-fugitive'
@@ -29,11 +30,15 @@ call plug#begin()
 	Plug 'editorconfig/editorconfig-vim'
 	Plug 'https://github.com/embear/vim-uncrustify'
 	Plug 'https://github.com/simonrw/vim-yapf'
-	Plug 'prettier/vim-prettier', { 'do': 'sudo npm install --frozen-lockfile --production  --legacy-peer-deps' } "Extreme Irritating, Need to switch completely to eslint only
+	Plug 'prettier/vim-prettier', { 'do': 'yarn install --frozen-lockfile --production' }
+	Plug 'https://github.com/pangloss/vim-javascript'
 
 	"Linters: TODO: Go through available config options
 	Plug 'https://github.com/dense-analysis/ale'
 	Plug 'eslint/eslint'
+
+	"AI:
+	" Plug 'madox2/vim-ai' TODO: Need to understand configs correctly
 
 	"Retired:
 	"Plug 'https://github.com/nanotech/jellybeans.vim'
@@ -161,6 +166,7 @@ nnoremap <Leader>snip :UltiSnipsEdit<CR>
 autocmd FileType c,cpp setlocal commentstring=//\ %s
 autocmd FileType javascript,typescript setlocal commentstring=//\ %s
 autocmd FileType javascript.jsx,typescript.tsx setlocal commentstring={/*\ %s */}
+autocmd FileType svelte setlocal commentstring=<!--%s-->
 
 "---------------
 "COCnvim Settings: :CocInstall coc-clangd coc-pyright coc-tsserver coc-json @yaegassy/coc-tailwindcss3
@@ -187,13 +193,19 @@ nnoremap <leader>ff :CocList files<CR>
 " Refactoring
 nnoremap <leader>rn <Plug>(coc-rename)
 
-inoremap <silent><expr> <TAB> coc#pum#visible() ? coc#pum#next(1) : CheckBackspace() ? "\<Tab>" : coc#refresh()
-inoremap <expr><S-TAB> coc#pum#visible() ? coc#pum#prev(1) : "\<C-h>"
-inoremap <silent><expr> <CR> coc#pum#visible() ? coc#pum#confirm(): "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
-inoremap <silent><expr> <c-@> coc#refresh()
+inoremap <silent><expr> <TAB>    coc#pum#visible() ? coc#pum#next(1) : CheckBackspace() ? "\<Tab>" : coc#refresh()
+inoremap <expr>        <S-TAB>  coc#pum#visible() ? coc#pum#prev(1) : "\<C-h>"
+" inoremap <silent><expr> <CR> coc#pum#visible() ? coc#pum#confirm(): "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
+inoremap <silent><expr> <CR>     coc#pum#visible() ? coc#pum#confirm() : "\<CR>"
+inoremap <silent><expr> <C-@>    coc#refresh()
+" Ctrl-C and Esc cancel completion if popup visible, else exit insert mode
+inoremap <silent><expr> <C-c> coc#pum#visible()
+      \ ? (coc#pum#cancel() . "\<C-c>")
+      \ : "\<C-c>"
 
 "---------------
-"GenNvim Settings:
+"CloseTags Settings:
+let g:closetag_filenames = '*.html,*.xhtml,*.phtml,*.svelte'
 
 "-----------------------------------------------------------------------------------------------------------------------
 "Git:
@@ -201,7 +213,7 @@ inoremap <silent><expr> <c-@> coc#refresh()
 "---------------
 "Fugitive:
 nnoremap <leader>gs :G status<CR>
-nnoremap <leader>gd :G diffsplit<CR>
+nnoremap <leader>gd :Gdiffsplit<CR>
 nnoremap <leader>gt :G difftool<CR>
 nnoremap <leader>gb :G blame<CR>
 nnoremap <leader>gl :G log<CR>
@@ -234,6 +246,10 @@ autocmd BufWritePre <buffer> if (&filetype == 'python') | :call Yapf() | endif
 "EditorConfig:
 let g:EditorConfig_exec_path = '~/.editorconfig'
 
+"---------------
+"Prettier::
+let g:prettier#exec_cmd_path = "./node_modules/.bin/prettier"
+
 "-----------------------------------------------------------------------------------------------------------------------
 "Linters:
 
@@ -252,6 +268,10 @@ let g:ale_cpp_clangd_options = "-stdlib=libc++ -std=c++20"
 let g:ale_cmake_executable = 'cmake'
 "Linters: (clangd, eslint, tslint, flake8...something for react?)
 "100s more, TODO
+
+"-----------------------------------------------------------------------------------------------------------------------
+"AI:
+
 
 "-----------------------------------------------------------------------------------------------------------------------
 "Archive:
