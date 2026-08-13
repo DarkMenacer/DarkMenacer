@@ -26,6 +26,9 @@ call plug#begin()
 	Plug 'https://github.com/airblade/vim-gitgutter'
 	"hooks4git --init and .hooks4git.ini file for git hooks
 
+	"Debugger:
+	Plug 'puremourning/vimspector'
+
 	"Fixers:
 	Plug 'editorconfig/editorconfig-vim'
 	Plug 'https://github.com/embear/vim-uncrustify'
@@ -228,6 +231,65 @@ let g:gitgutter_enabled = 1
 let g:gitgutter_realtime = 1
 let g:gitgutter_eager = 1
 set updatetime=100
+
+"-----------------------------------------------------------------------------------------------------------------------
+"Debugger:
+
+" DAP Protocols to install using :VimspectorInstall -> vscode-js-debug debugpy
+
+"---------------
+" Start / continue / stop / restart / pause
+nmap <Leader>dd <Plug>VimspectorContinue
+nmap <Leader>ds <Plug>VimspectorStop
+nmap <Leader>dr <Plug>VimspectorRestart
+nmap <Leader>dp <Plug>VimspectorPause
+
+"---------------
+" Breakpoints
+nmap <Leader>db <Plug>VimspectorToggleBreakpoint
+nmap <Leader>dB <Plug>VimspectorToggleConditionalBreakpoint
+nmap <Leader>df <Plug>VimspectorAddFunctionBreakpoint
+nmap <Leader>dl <Plug>VimspectorBreakpoints
+
+"---------------
+" Stepping
+nmap <Leader>dn <Plug>VimspectorStepOver
+nmap <Leader>di <Plug>VimspectorStepInto
+nmap <Leader>do <Plug>VimspectorStepOut
+
+"---------------
+" Run / program counter
+nmap <Leader>dc <Plug>VimspectorRunToCursor
+nmap <Leader>dg <Plug>VimspectorGoToCurrentLine
+nmap <Leader>d. <Plug>VimspectorJumpToProgramCounter
+
+"---------------
+" Stack frames
+nmap <Leader>du <Plug>VimspectorUpFrame
+nmap <Leader>dj <Plug>VimspectorDownFrame
+
+"---------------
+" Jump between breakpoints
+nmap <Leader>d] <Plug>VimspectorJumpToNextBreakpoint
+nmap <Leader>d[ <Plug>VimspectorJumpToPreviousBreakpoint
+
+"---------------
+" Inspect value under cursor / selection
+nmap <Leader>de <Plug>VimspectorBalloonEval
+xmap <Leader>de <Plug>VimspectorBalloonEval
+
+"---------------
+"Disassembly:
+nmap <Leader>da <Plug>VimspectorDisassemble
+
+"---------------
+"Completely close/reset Vimspector UI
+nnoremap <Leader>dq :VimspectorReset<CR>
+
+"---------------
+"DebugConsole:
+nnoremap <Leader>dx :VimspectorShowOutput Console<CR>
+
 
 "-----------------------------------------------------------------------------------------------------------------------
 "Fixers:
