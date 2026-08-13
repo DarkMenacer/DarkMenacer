@@ -1,0 +1,38 @@
+{
+  "configurations": {
+    "Launch via ts-node (TypeScript JIT)": {
+      "adapter": "js-debug",
+      "filetypes": [ "javascript", "typescript" ],
+      "default": true,
+      "configuration": {
+        "request": "launch",
+        "stopOnEntry": false,
+        "console": "integratedTerminal",
+        "runtimeExecutable": "node",
+        "runtimeArgs": [ "--require", "ts-node/register" ],
+        "program": "${workspaceRoot}/src/app.ts",
+        "cwd": "${workspaceRoot}",
+        "env": {
+          "NODE_ENV": "local-dev"
+        }
+      }
+    },
+    "Launch compiled JS (with source maps)": {
+      "adapter": "js-debug",
+      "filetypes": [ "javascript", "typescript" ],
+      "configuration": {
+        "request": "launch",
+        "stopOnEntry": false,
+        "console": "integratedTerminal",
+        "program": "${workspaceRoot}/build/app.js",
+        "cwd": "${workspaceRoot}",
+        "sourceMaps": true,
+        "outDir": "${workspaceRoot}/build",
+        "env": {
+          "NODE_ENV": "local-dev"
+        },
+        "preLaunchTask": "npx tsc"
+      }
+    }
+  }
+}
